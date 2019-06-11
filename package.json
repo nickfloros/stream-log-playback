@@ -4,7 +4,7 @@
   "description": "A simple framework to support playback of a data stream. Data is sourced from a file, an event per line, and the system respects relative times between events",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/nickfloros/stream-log-playback/issues"
   },
-  "homepage": "https://github.com/nickfloros/stream-log-playback#readme"
+  "homepage": "https://github.com/nickfloros/stream-log-playback#readme",
+  "devDependencies": {
+    "jasmine": "^3.4.0",
+    "karma-jasmine": "^2.0.1"
+  }
 }
