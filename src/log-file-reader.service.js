@@ -20,6 +20,7 @@ module.exports = class LogFileReader extends Readable {
 			const entry = JSON.parse(line);
 			// pause lineReader to avoid intenal buffer overflow
 			this._reader.pause();
+			// add a line id 
 			entry._lineId = this._lineId++;
 			this.push(JSON.stringify(entry));
 		});

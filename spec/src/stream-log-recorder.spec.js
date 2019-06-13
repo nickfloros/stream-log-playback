@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const {Writable} = require('stream');
-const StreamLogWriter = require('../src/stream-log-recorder');
+const StreamLogWriter = require('../../src/stream-log-recorder');
 
 class MockWriteStream extends Writable {
 	constructor(params) {
@@ -33,7 +33,7 @@ describe('stream-log-recoder',()=>{
 
 	it('should store 1 entry ... ',(done)=>{
 
-		const streamLogWriter = new StreamLogWriter({fileName : 'x'});
+		const streamLogWriter = StreamLogWriter.createInterface({fileName : 'x'});
 
 		mockWriterStream.on('finish',()=>{
 			expect(mockWriterStream.buffer.length).toBe(1);

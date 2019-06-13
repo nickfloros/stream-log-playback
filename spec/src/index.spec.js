@@ -3,7 +3,7 @@ describe('pointless test of index ...',()=>{
 	let streamLogPlayback;
 	
 	beforeEach(()=>{
-		streamLogPlayback = require('../src');
+		streamLogPlayback = require('../../index');
 	});
 
 	it('should have a reference to mock ...',()=>{

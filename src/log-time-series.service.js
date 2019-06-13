@@ -5,7 +5,7 @@ const {
 
 /**
  * fires events based on time difference between 
- * successive entries. entry is delayed 
+ * successive entries. 
  */
 module.exports = class LogTimeSeries extends Transform {
 	constructor(params) {
@@ -14,6 +14,11 @@ module.exports = class LogTimeSeries extends Transform {
 		this._resolution = params.timeResolution || 1;
 	}
 
+	/**
+	 * function to exteact from stream entry time to wait before firing this event
+	 * @param  {Object} entry in event series
+	 * @return {Number}       time to wait
+	 */
 	_defaultTimeToWait(entry){
 		return entry.dt;
 	}

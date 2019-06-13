@@ -1,11 +1,11 @@
 'use strict';
 
-const StreamLogReader = require('../src/stream-log-reader');
+const StreamLogReader = require('../../src/stream-log-reader');
 
 describe('stream-log-reader ', () => {
 
 	it('should read sample file', (done) => {
-		const logFileName = `${__dirname}/mock-data/sample.json`;
+		const logFileName = `${__dirname}/../mock-data/sample.json`;
 		const buffer = [];
 
 
