@@ -8,7 +8,7 @@ const fs = require('fs');
  * nano second to microsecond 
  * @type {Number}
  */
-const NS_TO_MS = 0.000001;
+const NS_TO_MS = 1.0e-6;
 /**
  * second to microsecond
  * @type {Number}
