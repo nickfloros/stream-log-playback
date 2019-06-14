@@ -3,7 +3,7 @@
 const {
 	Writable
 } = require('stream');
-const fs = require('fs');;
+const fs = require('fs');
 /**
  * nano second to microsecond 
  * @type {Number}
@@ -22,15 +22,15 @@ module.exports = class StreamLogRecorder extends Writable {
 		this._writeStream = wStream;
 		this._time = process.hrtime();
 
-		this.on('finish',()=>{
-		 	this._writeStream.end();
+		this.on('finish', () => {
+			this._writeStream.end();
 		});
 
 	}
 
 	_timeToWait() {
 		const dt = process.hrtime(this._time);
-		return dt[0]* SEC_TO_MS + dt[1] * NS_TO_MS;		
+		return dt[0] * SEC_TO_MS + dt[1] * NS_TO_MS;
 	}
 
 	/**
@@ -61,13 +61,11 @@ module.exports = class StreamLogRecorder extends Writable {
 	 */
 	static createInterface(params) {
 		const options = {
-			flags : (params && params.flags) ? params.flags : 'w',
-			autoclose : (params && params.autoclose) ? params.autoclose : true,
+			flags: (params && params.flags) ? params.flags : 'w',
+			autoclose: (params && params.autoclose) ? params.autoclose : true,
 
 		};
-		const fileStream =fs.createWriteStream(params.fileName,options);
+		const fileStream = fs.createWriteStream(params.fileName, options);
 		return new StreamLogRecorder(fileStream, params);
 	}
 }
-
-
