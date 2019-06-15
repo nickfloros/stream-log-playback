@@ -1,11 +1,7 @@
 describe('pointless test of index ...',()=>{
 
-	let streamLogPlayback;
+	const streamLogPlayback = require('../index');
 	
-	beforeEach(()=>{
-		streamLogPlayback = require('../index');
-	});
-
 	it('should have a reference to mock ...',()=>{
 		expect(streamLogPlayback).toBeTruthy();
 	});
