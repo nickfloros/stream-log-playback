@@ -47,4 +47,14 @@ describe('stream-log-recoder',()=>{
 		streamLogWriter.end();
 
 	});
+
+	it('should instanciate an interface and pass file properties ',()=>{
+		const streamLogWriter = StreamLogWriter.createInterface({
+			fileName : 'x',
+			flags : 'x',
+			autoclose: false
+		});
+		expect(streamLogWriter).toBeTruthy();
+		expect(fs.createWriteStream).toHaveBeenCalledWith('x',{flags:'x',autoclose:false});
+	})
 });

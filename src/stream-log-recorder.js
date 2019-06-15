@@ -62,9 +62,9 @@ module.exports = class StreamLogRecorder extends Writable {
 	static createInterface(params) {
 		const options = {
 			flags: (params && params.flags) ? params.flags : 'w',
-			autoclose: (params && params.autoclose) ? params.autoclose : true,
-
+			autoclose: (params && params.autoclose!==undefined ) ? params.autoclose : true,
 		};
+		
 		const fileStream = fs.createWriteStream(params.fileName, options);
 		return new StreamLogRecorder(fileStream, params);
 	}
