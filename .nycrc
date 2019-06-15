@@ -6,6 +6,6 @@
     "exclude": [
       "spec/**/*.spec.js"
     ],
-    "reporter": ["html","text"],
+    "reporter": ["html","lcov","text"],
     "report-dir": "coverage"
 }
