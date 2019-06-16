@@ -22,7 +22,7 @@ or data can be pushed using ```write``` function.
 ```javascript
 const {StreamLogRecorder} = require('stream-log-playback');
 
-const streamRecorder = StreamLogReader.createInterface({
+const streamRecorder = StreamLogRecorder.createInterface({
 	fileName : 'stream.log'
 	});
   
