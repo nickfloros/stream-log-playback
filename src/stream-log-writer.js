@@ -51,19 +51,25 @@ module.exports = class StreamLogWriter extends Writable {
 	}
 
 	/**
-	 * lazy funciton to create a stream log recorder with output to a file
+	 * lazy funciton to create a stream log recorder with output to a file. 
 	 * @param  {Object} params [description]
 	 * @param {string} params.fileName name of file where stream to be stored .. 
 	 * @param {string} params.flags useal writeFileStream flags - details to 'w' but could be put to 'a' to append data to an existing file
 	 * @param {string} params.autoclose controls behaviour of file created to store stream
-	 * @return {StreamLogRecorder}        [description]
+	 * @param {Writeable} params.output optional custom writable stream where the log should be persisted. 
+	 * @return {StreamLogWriter}        Writable stream 
 	 */
 	static createInterface(params) {
-		const options = {
-			flags: (params && params.flags) ? params.flags : 'w',
-			autoclose: (params && params.autoclose!==undefined ) ? params.autoclose : true,
-		};
-		const fileStream = fs.createWriteStream(params.fileName, options);
-		return new StreamLogWriter(fileStream, params);
+		let stream = params.output || null ;
+
+		if (!stream) {
+			const options = {
+				flags: (params && params.flags) ? params.flags : 'w',
+				autoclose: (params && params.autoclose!==undefined ) ? params.autoclose : true,
+			};
+			stream = fs.createWriteStream(params.fileName, options);
+		}
+
+		return new StreamLogWriter(stream, params);
 	}
 }
