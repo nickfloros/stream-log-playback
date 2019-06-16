@@ -12,7 +12,7 @@ The recorder is an implementation of pass-throught ```Writable```stream can be w
 ```javascript
 const {StreamLogRecorder} = require('stream-log-playback');
 
-const streamRecorder = StreamLogReader.createInterface({
+const streamRecorder = StreamLogRecorder.createInterface({
 	fileName : 'stream.log'
 	});
 
