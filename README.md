@@ -6,16 +6,16 @@
 
 A simple library that reproduces a data stream for development purposes, while respecting order and time separation between events
 
-The library providers both a recorder and a playback functions
+The library providers both recorder and playback functions
 
-The recorder is an implementation of a ```Writable``` stream can be wired either in a pipeline e.g. 
+The recorder is an implementation of pass-throught ```Writable```stream can be wired either in a pipeline e.g. 
 ```javascript
 const {StreamLogRecorder} = require('stream-log-playback');
 
 const streamRecorder = StreamLogReader.createInterface({
 	fileName : 'stream.log'
 	});
-  
+
 someOtherStream.pipe(streamRecorder).pipe(process.stdout);
 ```
 or data can be pushed using ```write``` function.
@@ -31,7 +31,7 @@ streamRecorder.write(JSON.strigify({data:2}));
 
 streamRecorder.end();
 ```
-In either case the recorder will create a file called ```stream.log```
+In either case the recorder will persist the data to a file called ```stream.log```, and the pass the original data to next stage of the pipeline.
 
 The reader implments ```Tranform``` stream
 
