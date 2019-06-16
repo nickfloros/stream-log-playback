@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const {Writable} = require('stream');
-const StreamLogWriter = require('../../src/stream-log-recorder');
+const StreamLogWriter = require('../../src/stream-log-writer');
 
 class MockWriteStream extends Writable {
 	constructor(params) {

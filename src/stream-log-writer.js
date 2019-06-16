@@ -15,10 +15,9 @@ const NS_TO_MS = 1.0e-6;
  */
 const SEC_TO_MS = 1000;
 
-module.exports = class StreamLogRecorder extends Writable {
+module.exports = class StreamLogWriter extends Writable {
 	constructor(wStream, params) {
 		super(params);
-
 		this._writeStream = wStream;
 		this._time = process.hrtime();
 
@@ -64,8 +63,7 @@ module.exports = class StreamLogRecorder extends Writable {
 			flags: (params && params.flags) ? params.flags : 'w',
 			autoclose: (params && params.autoclose!==undefined ) ? params.autoclose : true,
 		};
-		
 		const fileStream = fs.createWriteStream(params.fileName, options);
-		return new StreamLogRecorder(fileStream, params);
+		return new StreamLogWriter(fileStream, params);
 	}
 }

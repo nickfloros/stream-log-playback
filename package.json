@@ -5,8 +5,7 @@
   "main": "./index.js",
   "scripts": {
     "test": "nyc jasmine",
-    "test-publish-coverage": "nyc jasmine && cat ./coverage/lcov.info | npx codacy-coverage",
-    "pretest": "./node_modules/.bin/eslint --fix --ignore-path .gitignore ."
+    "test-publish-coverage": "nyc jasmine && cat ./coverage/lcov.info | npx codacy-coverage"
   },
   "repository": {
     "type": "git",
