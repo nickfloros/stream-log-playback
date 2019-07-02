@@ -8,6 +8,12 @@ const {
  * successive entries. 
  */
 module.exports = class LogTimeSeries extends Transform {
+	/**
+	 * default constuctor
+	 * @param  {object} params
+	 * @params {number} params.timeResolution allows to control  
+	 * @return {[type]}        [description]
+	 */
 	constructor(params) {
 		super(params);
 		this._timeToWait = params.timeToWait || this._defaultTimeToWait;
