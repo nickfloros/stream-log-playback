@@ -1,6 +1,6 @@
 {
   "name": "stream-log-playback",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Stream log playback library",
   "main": "./index.js",
   "scripts": {
