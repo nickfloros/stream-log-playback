@@ -33,6 +33,19 @@ streamRecorder.end();
 ```
 In either case the recorder will persist the data to a file called ```stream.log```, and the pass the original data to next stage of the pipeline.
 
+The generated format is as following
+```json
+{	"dt": 151.321274,	"rawJson": "{\"key\":2500178}"}
+{	"dt": 0.483183,	"rawJson": "{\"key\":2500356}"}
+```
+
+Each line represents an envent with the properties
+| property name | description |
+| dt            | the time in msec the event was generated from the previous line |
+| rawJson       | event details |
+
+So in the above example the first line says , wait for 151 msec before creating the first event. he second line for 8 msec. 
+
 The reader implments ```Tranform``` stream
 
 ```javascript
