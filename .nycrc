@@ -4,7 +4,8 @@
       "src/**/*.js"
     ],
     "exclude": [
-      "spec/**/*.spec.js"
+      "spec/**/*.spec.js",
+      "examples/**/*.js"
     ],
     "reporter": ["html","lcov","text"],
     "report-dir": "coverage"
