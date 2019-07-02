@@ -7,7 +7,7 @@ describe('pointless test of index ...',()=>{
 	});
 
 	it('should expose StreamLogReader and StreamLogWritter',()=>{
-		expect(streamLogPlayback.StreamLogRecorder).toBeTruthy();
+		expect(streamLogPlayback.StreamLogWriter).toBeTruthy();
 		expect(streamLogPlayback.StreamLogReader).toBeTruthy();
 	});
 

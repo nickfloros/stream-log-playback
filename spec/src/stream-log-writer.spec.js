@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const {Writable} = require('stream');
-const StreamLogWriter = require('../../src/stream-log-recorder');
+const StreamLogWriter = require('../../src/stream-log-writer');
 
 class MockWriteStream extends Writable {
 	constructor(params) {
@@ -31,7 +31,7 @@ describe('stream-log-recoder',()=>{
 
 	})	
 
-	it('should store 1 entry ... ',(done)=>{
+	it('should create a StreamLogWriter with a file writeable stream ',(done)=>{
 
 		const streamLogWriter = StreamLogWriter.createInterface({fileName : 'x'});
 
@@ -48,7 +48,7 @@ describe('stream-log-recoder',()=>{
 
 	});
 
-	it('should instanciate an interface and pass file properties ',()=>{
+	it('should use some of the custom properties to create a StreamLogWriter with a file writeable stream ',()=>{
 		const streamLogWriter = StreamLogWriter.createInterface({
 			fileName : 'x',
 			flags : 'x',
@@ -56,5 +56,23 @@ describe('stream-log-recoder',()=>{
 		});
 		expect(streamLogWriter).toBeTruthy();
 		expect(fs.createWriteStream).toHaveBeenCalledWith('x',{flags:'x',autoclose:false});
-	})
+	});
+
+	it('should create a StreamLogWriter with a custom writable stream ',(done)=>{
+		const streamLogWriter = StreamLogWriter.createInterface({
+			output : mockWriterStream
+		});
+
+		mockWriterStream.on('finish',()=>{
+			expect(mockWriterStream.buffer.length).toBe(1);
+			const entry = JSON.parse(mockWriterStream._buffer[0]);
+			expect(entry.dt).toBeTruthy();
+			expect(entry.payload).toBeTruthy();
+			done();
+		});
+
+		streamLogWriter.write(JSON.stringify({a:1}));
+		streamLogWriter.end();
+
+	});
 });

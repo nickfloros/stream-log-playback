@@ -1,7 +1,7 @@
 'use strict';
 
-const	StreamLogRecorder = require('./stream-log-recorder');
+const	StreamLogWriter = require('./stream-log-writer');
 const	StreamLogReader = require('./stream-log-reader');
 
-module.exports={ StreamLogReader, StreamLogRecorder
+module.exports={ StreamLogReader, StreamLogWriter
 };
