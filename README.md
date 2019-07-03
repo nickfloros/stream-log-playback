@@ -38,7 +38,8 @@ Create a recorder
 property       | Description
 ---------------|------------
 fileName       | name of file containing the log to read
-flag s         | usual createFileStream flags. Default value is 'w' create, but if set 'a' it will ammend on existing file new entries
+flags          | usual createFileStream flags. Default value is 'w' create, but if set 'a' it will ammend on existing file new entries
+autoclose.     | usual createFileStream option. Default is true.
 
 In either case the recorder will persist the data to a file called ```stream.log```, and the pass the original data to next stage of the pipeline.
 
@@ -84,8 +85,9 @@ const reader =  StreamLogReader.createInterface({
 
 reader.pipe(someOtherStream);
 ````
-### StreamLogReader
+### StreamLogReader.createInterface(options)
 Create a reader 
+
 * StreamLogReader
 ### `options` object proerties
 
