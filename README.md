@@ -8,7 +8,7 @@ A simple library that reproduces a data stream for development purposes, while r
 
 The library providers both recorder and playback functions
 
-The recorder is an implementation of pass-throught ```Writable```stream can be wired either in a pipeline e.g. 
+The recorder ```StreamLogRecorder``` is an implementation of pass-throught ```Writable```stream can be wired either in a pipeline e.g. 
 ```javascript
 const {StreamLogRecorder} = require('stream-log-playback');
 
@@ -36,19 +36,20 @@ In either case the recorder will persist the data to a file called ```stream.log
 The generated format is as following
 ```json
 {	"dt": 151.321274,	"rawJson": "{\"key\":2500178}"}
-{	"dt": 0.483183,	"rawJson": "{\"key\":2500356}"}
+{	"dt": 20.483183,	"rawJson": "{\"key\":2500356}"}
 ```
 
-Each line represents an envent with the properties
+Each line represents an event with the properties
 
  property name | description 
 -------------- | ------------
- dt            | the time in msec the event was generated from the previous line 
+ dt            | the time in msec the event was generated from the previous event 
  rawJson       | event details 
 
-So in the above example the first line says , wait for 151 msec before creating the first event. he second line for 8 msec. 
 
-The reader implments ```Tranform``` stream
+So in the above example the first line says , wait for 151 msec before creating the first event.The second line for says wait for 20 msec. 
+
+The reader is an implementation of a ```Tranform``` and can be used either as
 
 ```javascript
 const {StreamLogReader} = require('stream-log-playback');
@@ -61,3 +62,21 @@ reader.on('data',(lineEntry)=>{
   console.log(line.toString());
 });
 ````
+
+or wired in a pipeline
+
+```javascript
+const {StreamLogReader} = require('stream-log-playback');
+
+const reader = new StreamLogReader({
+  fileName:'stream.log'
+  });
+
+reader.pipe(someOtherStream);
+````
+
+property       | Description
+---------------|------------
+fileName       | name of dile containing the log to read
+timeResolution | don't wait if dt < timeResolution e.g. if timeResolution is 10 then the second event in the previous exmple will fire immediately.
+maxWait        | if dt>maxWait then wait for maxWait e.g. is maxWait is 100 then in the above example the first event will fire after 100 msec.
