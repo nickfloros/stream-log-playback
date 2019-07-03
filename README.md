@@ -31,7 +31,17 @@ streamRecorder.write(JSON.strigify({data:2}));
 
 streamRecorder.end();
 ```
+### StreamLogRecorder.createInterface(options)
+Create a recorder
+
+### `options` object properties
+property       | Description
+---------------|------------
+fileName       | name of file containing the log to read
+flag s         | usual createFileStream flags. Default value is 'w' create, but if set 'a' it will ammend on existing file new entries
+
 In either case the recorder will persist the data to a file called ```stream.log```, and the pass the original data to next stage of the pipeline.
+
 
 The generated format is as following
 ```json
@@ -54,7 +64,7 @@ The reader is an implementation of a ```Tranform``` and can be used either as
 ```javascript
 const {StreamLogReader} = require('stream-log-playback');
 
-const reader = new StreamLogReader({
+const reader = StreamLogReader.createInterface({
   fileName:'stream.log'
   });
 
@@ -68,15 +78,19 @@ or wired in a pipeline
 ```javascript
 const {StreamLogReader} = require('stream-log-playback');
 
-const reader = new StreamLogReader({
+const reader =  StreamLogReader.createInterface({
   fileName:'stream.log'
   });
 
 reader.pipe(someOtherStream);
 ````
+### StreamLogReader
+Create a reader 
+* StreamLogReader
+### `options` object proerties
 
 property       | Description
 ---------------|------------
-fileName       | name of dile containing the log to read
+fileName       | name of file containing the log to read
 timeResolution | don't wait if dt < timeResolution e.g. if timeResolution is 10 then the second event in the previous exmple will fire immediately.
 maxWait        | if dt>maxWait then wait for maxWait e.g. is maxWait is 100 then in the above example the first event will fire after 100 msec.
