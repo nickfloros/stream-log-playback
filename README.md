@@ -40,9 +40,11 @@ The generated format is as following
 ```
 
 Each line represents an envent with the properties
-| property name | description |
-| dt            | the time in msec the event was generated from the previous line |
-| rawJson       | event details |
+
+ property name | description 
+-------------- | ------------
+ dt            | the time in msec the event was generated from the previous line 
+ rawJson       | event details 
 
 So in the above example the first line says , wait for 151 msec before creating the first event. he second line for 8 msec. 
 
